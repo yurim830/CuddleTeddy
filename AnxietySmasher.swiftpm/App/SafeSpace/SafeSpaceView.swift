@@ -47,7 +47,7 @@ struct SafeSpaceView: View {
                 isSentByUser: false
             )
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 messages.append(message)
                 scrollProxy?.scrollTo(message.id, anchor: .bottom) // 최신 메시지로 이동
             }
