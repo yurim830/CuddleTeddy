@@ -27,28 +27,26 @@ struct AsTextEditorStyle: ViewModifier {
     }
     
     func body(content: Content) -> some View {
-        VStack {
-            content
-                .font(.system(size: 16, weight: .regular))
-                .foregroundStyle(.black)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 12)
-                .frame(height: 100)
-                .scrollContentBackground(.hidden)
-                .background(
-                    RoundedRectangle(cornerRadius: 23)
-                        .foregroundStyle(Color.yrGrayLight)
-                )
-                .autocorrectionDisabled()
-                .overlay(alignment: .topLeading) {
-                    if !isFocused && text.isEmpty {
-                        Text(placeholder)
-                            .padding(12)
-                            .font(.system(size: 16, weight: .regular))
-                            .foregroundStyle(Color.yrGray)
-                    }
+        content
+            .font(.system(size: 16, weight: .regular))
+            .foregroundStyle(.black)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
+            .frame(height: 80)
+            .scrollContentBackground(.hidden)
+            .background(
+                RoundedRectangle(cornerRadius: 23)
+                    .foregroundStyle(Color.yrGrayLight)
+            )
+            .autocorrectionDisabled()
+            .overlay(alignment: .topLeading) {
+                if !isFocused && text.isEmpty {
+                    Text(placeholder)
+                        .padding(12)
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(Color.yrGray)
                 }
-        }
+            }
     }
 }
 
