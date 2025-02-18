@@ -14,6 +14,7 @@ struct ChatBubbleView: View {
     
     var body: some View {
         Text(text)
+            .font(.system(size: 16, weight: .regular))
             .padding(12)
             .background(
                 ChatBubbleShape(isSentByUser: isSentByUser)

@@ -29,7 +29,7 @@ struct AsTextEditorStyle: ViewModifier {
     func body(content: Content) -> some View {
         VStack {
             content
-                .font(.system(size: 18, weight: .regular))
+                .font(.system(size: 16, weight: .regular))
                 .foregroundStyle(.black)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 12)
@@ -44,7 +44,7 @@ struct AsTextEditorStyle: ViewModifier {
                     if !isFocused && text.isEmpty {
                         Text(placeholder)
                             .padding(12)
-                            .font(.system(size: 18, weight: .regular))
+                            .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(Color.yrGray)
                     }
                 }
