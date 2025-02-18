@@ -93,7 +93,6 @@ private extension SafeSpaceView {
             }
         }
     }
-
     
     
     // MARK: - Typing View
@@ -117,7 +116,8 @@ private extension SafeSpaceView {
                     .foregroundColor(Color.yrCyanDark)
             }
         }
-        .padding(.all, 7)
+        .padding(.vertical, 7)
+        .padding(.horizontal, 10)
         .background(Color(.white))
     }
 }
