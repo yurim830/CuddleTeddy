@@ -21,7 +21,22 @@ struct SafeSpaceView: View {
             
             VStack {
                 messageScrollView
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.horizontal, 10)
                 typingView
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            GeometryReader { geometry in
+                VStack {
+                    Rectangle()
+                        .foregroundStyle(Color.yrCyanLight.opacity(0.3))
+                        .background(.ultraThinMaterial)
+                        .blur(radius: 1)
+                        .frame(maxWidth: .infinity, maxHeight: geometry.safeAreaInsets.top)
+                    Spacer()
+                }
+                .ignoresSafeArea()
             }
         }
     }
@@ -46,26 +61,33 @@ private extension SafeSpaceView {
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(messages) { message in
-                        ChatBubbleView(text: message.text, isSentByUser: message.isSentByUser)
-                            .padding(.horizontal)
-                            .id(message.id) // 스크롤 이동을 위한 ID
+                        VStack(alignment: message.isSentByUser ? .trailing : .leading, spacing: 5) {
+                            Text(message.date)
+                                .font(.system(size: 12, weight: .regular))
+                                .foregroundStyle(Color.yrGray)
+                            ChatBubbleView(text: message.text, isSentByUser: message.isSentByUser)
+                                .id(message.id)
+                        }
+                        .frame(maxWidth: .infinity, alignment: message.isSentByUser ? .trailing : .leading)
+                        .padding(.horizontal, 10)
                     }
                 }
                 .padding(.vertical)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .background(Color(UIColor.systemGroupedBackground))
             .onAppear {
                 scrollProxy = proxy
             }
         }
     }
+
     
     
     // MARK: - Typing View
     
     var typingView: some View {
         
-        HStack(alignment: .bottom, spacing: 6) {
+        HStack(alignment: .center, spacing: 6) {
             TextEditor(text: $newMessage)
                 .asTextEditorStyle(
                     placeholder: "Express your thoughts...",
@@ -80,10 +102,9 @@ private extension SafeSpaceView {
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(Color.yrCyanDark)
-                    
             }
         }
-        .padding()
+        .padding(.all, 7)
         .background(Color(.white))
     }
 }
