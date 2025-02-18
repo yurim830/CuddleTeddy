@@ -33,11 +33,11 @@ struct AsTextEditorStyle: ViewModifier {
                 .foregroundStyle(.black)
                 .padding(.leading, 14)
                 .padding(.vertical, 12)
-                .frame(height: 46)
+                .frame(height: 100)
                 .scrollContentBackground(.hidden)
                 .background(
                     RoundedRectangle(cornerRadius: 23)
-                        .foregroundStyle(.gray) // TODO: fix
+                        .foregroundStyle(Color.yrGrayLight)
                 )
                 .autocorrectionDisabled()
                 .overlay(alignment: .topLeading) {
@@ -48,19 +48,6 @@ struct AsTextEditorStyle: ViewModifier {
                             .foregroundStyle(Color.yrGray)
                     }
                 }
-//                .onChange(of: text) { _, newValue in
-//                    if newValue.count > maximumTextLength {
-//                        text = String(newValue.prefix(maximumTextLength))
-//                    }
-//                }
-
-
-            HStack {
-                Spacer()
-
-                Text("\(text.count)/\(maximumTextLength)")
-                    .foregroundStyle(.gray)
-            }
         }
     }
 }
