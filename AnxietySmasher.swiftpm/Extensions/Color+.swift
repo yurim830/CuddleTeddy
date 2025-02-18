@@ -37,6 +37,10 @@ extension Color {
         return Color("yr_gray")
     }
     
+    static var yrGrayLight: Color {
+        return Color("yr_gray_light")
+    }
+    
     static var yrPink: Color {
         return Color("yr_pink")
     }
