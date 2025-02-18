@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct SafeSpaceView: View {
-    struct Message: Identifiable {
-        let id = UUID()
-        let date: String
-        let text: String
-        let isSentByUser: Bool
-    }
     
-    @State private var messages: [Message] = []
+    @State private var messages: [MessageModel] = []
     @State private var newMessage: String = ""
     @State private var scrollProxy: ScrollViewProxy?
 
@@ -63,7 +57,7 @@ struct SafeSpaceView: View {
         guard !newMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
 
         let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        let message = Message(date: date, text: newMessage, isSentByUser: Bool.random()) // 랜덤 발신자 지정 (테스트용)
+        let message = MessageModel(date: date, text: newMessage, isSentByUser: Bool.random()) // 랜덤 발신자 지정 (테스트용)
         messages.append(message)
         newMessage = ""
 
@@ -136,7 +130,7 @@ struct ChatView_Previews: PreviewProvider {
 
 private extension SafeSpaceView {
     
-    func messageView(message: Message) -> some View {
+    func messageView(message: MessageModel) -> some View {
         var messageView: some View {
             HStack {
                 if !message.isSentByUser { Spacer() }
