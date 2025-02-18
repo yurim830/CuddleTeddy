@@ -22,7 +22,7 @@ struct CheerUpView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
-                Image("faceSmile")
+                Image.faceSmile
                 
                 cheerUpMessageZStack
                     .padding(.horizontal, 40)
@@ -35,18 +35,17 @@ struct CheerUpView: View {
     
     var cheerUpMessageZStack: some View {
         ZStack(alignment: .center) {
-            Image("chatBubbleOrg")
+            Image.chatBubble
                 .resizable()
                 .scaledToFit()
-//                .frame(width: 280 * ScreenUtils.widthRatio)
 
             Text(cheerUpMessage)
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundStyle(.white)
-//                .frame(width: 254 * ScreenUtils.widthRatio)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
                 .offset(y: 10)
+                .padding(20)
         }
     }
     
@@ -58,8 +57,7 @@ struct CheerUpView: View {
                 .font(
                     Font.system(size: 24, weight: .semibold, design: .serif)
                 )
-                .foregroundStyle(Color("yrYellowDark"))
-                .italic(true)
+                .foregroundStyle(Color.yrYellowDark)
                 .underline()
         }
     }

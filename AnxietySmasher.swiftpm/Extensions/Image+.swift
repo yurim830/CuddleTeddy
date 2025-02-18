@@ -49,4 +49,8 @@ extension Image {
         return Image("face-smile")
     }
     
+    static var chatBubble: Image {
+        return Image("chat-bubble")
+    }
+    
 }
