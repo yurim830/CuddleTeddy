@@ -13,7 +13,7 @@ struct CheerUpView: View {
     
     
     init() {
-        _cheerUpMessage = State(initialValue: CheerUpMessages.messages.randomElement() ?? "You're doing great!")
+        _cheerUpMessage = State(initialValue: Messages.cheerUpMessages.randomElement() ?? "You're doing great!")
     }
     
     var body: some View {
@@ -66,7 +66,7 @@ struct CheerUpView: View {
     
     
     func refreshMessage() {
-        cheerUpMessage = CheerUpMessages.messages.randomElement() ?? "Stay positive!"
+        cheerUpMessage = Messages.cheerUpMessages.randomElement() ?? "Stay positive!"
     }
 }
 

@@ -39,6 +39,19 @@ struct SafeSpaceView: View {
                 .ignoresSafeArea()
             }
         }
+        .onAppear { // NOTE: Send greeting message
+            let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+            let message = MessageModel(
+                date: date,
+                text: Messages.safeSpaceGreetings.randomElement() ?? "Hi, how are you?",
+                isSentByUser: false
+            )
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                messages.append(message)
+                scrollProxy?.scrollTo(message.id, anchor: .bottom) // 최신 메시지로 이동
+            }
+        }
     }
 }
 
@@ -116,7 +129,7 @@ private extension SafeSpaceView {
     
     func sendMessage() {
         let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        let message = MessageModel(date: date, text: newMessage, isSentByUser: .random()) // 랜덤 발신자 지정 (테스트용)
+        let message = MessageModel(date: date, text: newMessage, isSentByUser: true)
         messages.append(message)
         newMessage = ""
 

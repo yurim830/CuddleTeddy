@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct CheerUpMessages {
+struct Messages {
     
-    static let messages: [String] = [
+    static let cheerUpMessages: [String] = [
         "Hi, how are you doing?\nHope you’re doing well:)",
         "I hope\nbeautiful things happen to you today.",
         "You're stronger than you think,\nkeep going!",
@@ -66,6 +66,30 @@ struct CheerUpMessages {
         "Even on tough days, you are doing your best.",
         "You’re a warrior—don’t forget that!",
         "The best is yet to come, keep believing in yourself."
+    ]
+    
+    
+    static let safeSpaceGreetings: [String] = [
+        "Hi, how are you?",
+        "Are you okay?",
+        "What's up?",
+        "How was your day?",
+        "Is something on your mind?",
+        "Do you want to talk about it?",
+        "How are you feeling right now?",
+        "You seem a bit quiet today, want to share anything?",
+        "Anything bothering you lately?",
+        "What’s been on your mind these days?",
+        "How’s your heart feeling today?",
+        "Need someone to listen? I’m here for you.",
+        "What’s something that made you smile today?",
+        "Did anything good happen to you today?",
+        "If something’s weighing you down, you can tell me.",
+        "What’s been the hardest part of your day?",
+        "What’s something you wish people understood about you?",
+        "Is there anything you need to let out?",
+        "What do you need most right now?",
+        "I’m here for you. What’s on your mind?"
     ]
     
 }
