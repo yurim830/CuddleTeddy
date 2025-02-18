@@ -48,7 +48,7 @@ struct StressSmasherView: View {
     
     var tapMeLabel: some View {
         Text("Tap me\nand let it all out!")
-            .font(.system(size: 30, weight: .regular))
+            .font(.system(size: 26, weight: .regular, design: .monospaced))
             .multilineTextAlignment(.center)
             .foregroundStyle(Color.yrPurpleDark)
     }
@@ -73,7 +73,7 @@ struct StressSmasherView: View {
     }
     
     var characterView: some View {
-        VStack(spacing: -10) {
+        VStack(spacing: -9) {
             faceImage
             bodyImages[currentBodyIndex]
                 .resizable()

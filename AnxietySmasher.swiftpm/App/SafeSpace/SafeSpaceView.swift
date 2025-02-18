@@ -47,7 +47,7 @@ struct SafeSpaceView: View {
                 isSentByUser: false
             )
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 messages.append(message)
                 scrollProxy?.scrollTo(message.id, anchor: .bottom) // 최신 메시지로 이동
             }
@@ -93,7 +93,6 @@ private extension SafeSpaceView {
             }
         }
     }
-
     
     
     // MARK: - Typing View
@@ -117,7 +116,8 @@ private extension SafeSpaceView {
                     .foregroundColor(Color.yrCyanDark)
             }
         }
-        .padding(.all, 7)
+        .padding(.vertical, 7)
+        .padding(.horizontal, 10)
         .background(Color(.white))
     }
 }
