@@ -26,26 +26,9 @@ struct SafeSpaceView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(messages) { message in
-                            HStack {
-                                if !message.isSentByUser { Spacer() }
-                                
-                                VStack(alignment: message.isSentByUser ? .trailing : .leading) {
-                                    Text(message.date)
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                    
-                                    Text(message.text)
-                                        .padding()
-                                        .background(message.isSentByUser ? Color.blue : Color.white)
-                                        .clipShape(ChatBubbleShape(isSentByUser: message.isSentByUser))
-                                        .foregroundColor(message.isSentByUser ? .white : .black)
-                                        .frame(maxWidth: 250, alignment: .leading)
-                                }
-                                
-                                if message.isSentByUser { Spacer() }
-                            }
-                            .padding(.horizontal)
-                            .id(message.id) // 스크롤 이동을 위한 ID
+                            messageView(message: message)
+                                .padding(.horizontal)
+                                .id(message.id) // 스크롤 이동을 위한 ID
                         }
                     }
                     .padding(.vertical)
@@ -145,5 +128,36 @@ struct KeyboardAwareModifier: ViewModifier {
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         SafeSpaceView()
+    }
+}
+
+
+// MARK: - UI Components
+
+private extension SafeSpaceView {
+    
+    func messageView(message: Message) -> some View {
+        var messageView: some View {
+            HStack {
+                if !message.isSentByUser { Spacer() }
+                
+                VStack(alignment: message.isSentByUser ? .trailing : .leading) {
+                    Text(message.date)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    
+                    Text(message.text)
+                        .padding()
+                        .background(message.isSentByUser ? Color.blue : Color.white)
+                        .clipShape(ChatBubbleShape(isSentByUser: message.isSentByUser))
+                        .foregroundColor(message.isSentByUser ? .white : .black)
+                        .frame(maxWidth: 250, alignment: .leading)
+                }
+                
+                if message.isSentByUser { Spacer() }
+            }
+        }
+        
+        return messageView
     }
 }
