@@ -31,7 +31,7 @@ struct AsTextEditorStyle: ViewModifier {
             content
                 .font(.system(size: 18, weight: .regular))
                 .foregroundStyle(.black)
-                .padding(.leading, 14)
+                .padding(.horizontal, 14)
                 .padding(.vertical, 12)
                 .frame(height: 100)
                 .scrollContentBackground(.hidden)
