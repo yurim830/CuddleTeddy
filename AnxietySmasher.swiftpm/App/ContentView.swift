@@ -8,7 +8,7 @@ struct ContentView: View {
         TabView {
             PetTeddyView()
                 .tabItem {
-                    Label("Teddy", systemImage: "hand.tap")
+                    Label("Teddy", systemImage: "hand.draw.fill")
                 }
                 .onAppear {
                     selectedTab = 0

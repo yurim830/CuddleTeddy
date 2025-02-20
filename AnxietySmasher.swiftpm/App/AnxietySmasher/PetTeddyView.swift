@@ -11,11 +11,11 @@ struct PetTeddyView: View {
     
     @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
-    @State private var bubbles: [TeddyBubbleModel] = [] // Stores active heart-bubbles
-    
+    @State private var bubbles: [TeddyBubbleModel] = []
     
     @State private var currentTeddyImageIndex = 0
-    @State private var isChanging = false // Prevents rapid changes
+    @State private var isChangingTeddy = false
+    @State private var isChangingBubble = false
     
     var body: some View {
         
@@ -96,12 +96,19 @@ private extension PetTeddyView {
         .simultaneousGesture(
             DragGesture()
                 .onChanged { _ in
-                    if !isChanging {
-                        isChanging = true
+                    if !isChangingTeddy {
+                        isChangingTeddy = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             switchTeddyImage()
+                            isChangingTeddy = false
+                        }
+                    }
+                    
+                    if !isChangingBubble {
+                        isChangingBubble = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                             addHeartBubble()
-                            isChanging = false
+                            isChangingBubble = false
                         }
                     }
                 }
@@ -139,7 +146,7 @@ extension PetTeddyView {
         bubbles.append(newBubble)
         
         // Remove after 2 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             bubbles.removeAll { $0.id == newBubble.id }
         }
     }
