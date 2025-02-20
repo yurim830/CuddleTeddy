@@ -11,7 +11,7 @@ struct StressSmasherView: View {
     
     @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
-    @State private var currentBodyIndex = 0
+    @State private var currentImageIndex = 0
     @State private var isChanging = false // Prevents rapid changes
     
     var body: some View {
@@ -69,11 +69,11 @@ struct StressSmasherView: View {
     }
     
     var characterView: some View {
-        teddy.images[currentBodyIndex]
+        teddy.images[currentImageIndex]
         .simultaneousGesture(
             TapGesture()
                 .onEnded {
-                    currentBodyIndex = (currentBodyIndex + 1) % 2
+                    currentImageIndex = (currentImageIndex + 1) % teddy.images.count
                 }
         )
         .simultaneousGesture(
@@ -82,7 +82,7 @@ struct StressSmasherView: View {
                     if !isChanging {
                         isChanging = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            currentBodyIndex = (currentBodyIndex + 1) % 2
+                            currentImageIndex = (currentImageIndex + 1) % teddy.images.count
                             isChanging = false
                         }
                     }
