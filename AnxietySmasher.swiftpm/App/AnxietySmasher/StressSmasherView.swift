@@ -9,12 +9,7 @@ import SwiftUI
 
 struct StressSmasherView: View {
     
-    @State private var faceImage: Image = (FaceType.allCases.randomElement()?.image ?? .faceHappy)
-    
-    @State private var bodyImages: [Image] = [
-        Image("body1"),
-        Image("body2")
-    ]
+    @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
     @State private var currentBodyIndex = 0
     @State private var isChanging = false // Prevents rapid changes
@@ -56,7 +51,7 @@ struct StressSmasherView: View {
     
     var changeFaceButton: some View {
         Button {
-            faceImage = (FaceType.allCases.randomElement()?.image ?? .faceHappy)
+            teddy = (TeddyType.allCases.randomElement() ?? .teddy1)
         } label: {
             Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
                 .foregroundStyle(Color.yrPurpleDark)
@@ -74,17 +69,11 @@ struct StressSmasherView: View {
     }
     
     var characterView: some View {
-        VStack(spacing: -9) {
-            faceImage
-            bodyImages[currentBodyIndex]
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-        }
+        teddy.images[currentBodyIndex]
         .simultaneousGesture(
             TapGesture()
                 .onEnded {
-                    currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
+                    currentBodyIndex = (currentBodyIndex + 1) % 2
                 }
         )
         .simultaneousGesture(
@@ -93,7 +82,7 @@ struct StressSmasherView: View {
                     if !isChanging {
                         isChanging = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
+                            currentBodyIndex = (currentBodyIndex + 1) % 2
                             isChanging = false
                         }
                     }
