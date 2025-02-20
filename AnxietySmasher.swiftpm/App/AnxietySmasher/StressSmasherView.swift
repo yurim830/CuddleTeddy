@@ -17,6 +17,7 @@ struct StressSmasherView: View {
     ]
     
     @State private var currentBodyIndex = 0
+    @State private var isChanging = false // Prevents rapid changes
     
     var body: some View {
         
@@ -47,7 +48,7 @@ struct StressSmasherView: View {
     }
     
     var tapMeLabel: some View {
-        Text("Tap me\nand let it all out!")
+        Text("Pet me\nand let it all out!")
             .font(.system(size: 26, weight: .regular, design: .monospaced))
             .multilineTextAlignment(.center)
             .foregroundStyle(Color.yrPurpleDark)
@@ -80,9 +81,24 @@ struct StressSmasherView: View {
                 .scaledToFit()
                 .frame(width: 200, height: 200)
         }
-        .onTapGesture {
-            currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
-        }
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded {
+                    currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
+                }
+        )
+        .simultaneousGesture(
+            DragGesture()
+                .onChanged { _ in
+                    if !isChanging {
+                        isChanging = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
+                            isChanging = false
+                        }
+                    }
+                }
+        )
     }
 }
 
