@@ -9,14 +9,10 @@ import SwiftUI
 
 struct StressSmasherView: View {
     
-    @State private var faceImage: Image = (FaceType.allCases.randomElement()?.image ?? .faceHappy)
+    @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
-    @State private var bodyImages: [Image] = [
-        Image("body1"),
-        Image("body2")
-    ]
-    
-    @State private var currentBodyIndex = 0
+    @State private var currentImageIndex = 0
+    @State private var isChanging = false // Prevents rapid changes
     
     var body: some View {
         
@@ -47,7 +43,7 @@ struct StressSmasherView: View {
     }
     
     var tapMeLabel: some View {
-        Text("Tap me\nand let it all out!")
+        Text("Pet me\nand let it all out!")
             .font(.system(size: 26, weight: .regular, design: .monospaced))
             .multilineTextAlignment(.center)
             .foregroundStyle(Color.yrPurpleDark)
@@ -55,7 +51,7 @@ struct StressSmasherView: View {
     
     var changeFaceButton: some View {
         Button {
-            faceImage = (FaceType.allCases.randomElement()?.image ?? .faceHappy)
+            teddy = (TeddyType.allCases.randomElement() ?? .teddy1)
         } label: {
             Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
                 .foregroundStyle(Color.yrPurpleDark)
@@ -73,16 +69,25 @@ struct StressSmasherView: View {
     }
     
     var characterView: some View {
-        VStack(spacing: -9) {
-            faceImage
-            bodyImages[currentBodyIndex]
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-        }
-        .onTapGesture {
-            currentBodyIndex = (currentBodyIndex + 1) % bodyImages.count
-        }
+        teddy.images[currentImageIndex]
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded {
+                    currentImageIndex = (currentImageIndex + 1) % teddy.images.count
+                }
+        )
+        .simultaneousGesture(
+            DragGesture()
+                .onChanged { _ in
+                    if !isChanging {
+                        isChanging = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            currentImageIndex = (currentImageIndex + 1) % teddy.images.count
+                            isChanging = false
+                        }
+                    }
+                }
+        )
     }
 }
 
