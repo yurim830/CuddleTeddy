@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StressSmasherView: View {
+struct PetTeddyView: View {
     
     @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
@@ -43,7 +43,7 @@ struct StressSmasherView: View {
 
 // MARK: - UI Components
 
-private extension StressSmasherView {
+private extension PetTeddyView {
     
     var howAreYouLabel: some View {
         Text("Hi,\nhow are you?")
@@ -124,7 +124,7 @@ private extension StressSmasherView {
 
 // MARK: - Methods
 
-extension StressSmasherView {
+extension PetTeddyView {
     
     private func switchTeddyImage() {
         currentTeddyImageIndex = (currentTeddyImageIndex + 1) % teddy.images.count
@@ -150,5 +150,5 @@ extension StressSmasherView {
 // MARK: - Preview
 
 #Preview {
-    StressSmasherView()
+    PetTeddyView()
 }

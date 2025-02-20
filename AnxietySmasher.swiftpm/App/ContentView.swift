@@ -6,9 +6,9 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            StressSmasherView()
+            PetTeddyView()
                 .tabItem {
-                    Label("Stress Smasher", systemImage: "hand.tap")
+                    Label("Teddy", systemImage: "hand.tap")
                 }
                 .onAppear {
                     selectedTab = 0
