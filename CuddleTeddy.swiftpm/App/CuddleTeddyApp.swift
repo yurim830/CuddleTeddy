@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct PetTeddyApp: App {
+struct CuddleTeddyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

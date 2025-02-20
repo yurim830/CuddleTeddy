@@ -8,13 +8,13 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "PetTeddy",
+    name: "CuddleTeddy",
     platforms: [
         .iOS("16.0")
     ],
     products: [
         .iOSApplication(
-            name: "PetTeddy",
+            name: "CuddleTeddy",
             targets: ["AppModule"],
             bundleIdentifier: "com.yurim.PetTeddy",
             teamIdentifier: "L995XJC5CV",
@@ -31,7 +31,8 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ]
+            ],
+            appCategory: .healthcareFitness
         )
     ],
     targets: [
