@@ -36,7 +36,8 @@ extension TeddyBubbleModel {
         Image("word-bubble-2"),
         Image("word-bubble-3"),
         Image("word-bubble-4"),
-        Image("word-bubble-5")
+        Image("word-bubble-5"),
+        Image("word-bubble-6")
     ]
     
 }
