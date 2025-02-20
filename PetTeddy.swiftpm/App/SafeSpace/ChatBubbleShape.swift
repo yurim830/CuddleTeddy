@@ -1,6 +1,6 @@
 //
 //  ChatBubbleShape.swift
-//  AnxietySmasher
+//  PetTeddy
 //
 //  Created by 김유림 on 2/18/25.
 //

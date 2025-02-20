@@ -8,15 +8,15 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "AnxietySmasher",
+    name: "PetTeddy",
     platforms: [
         .iOS("16.0")
     ],
     products: [
         .iOSApplication(
-            name: "AnxietySmasher",
+            name: "PetTeddy",
             targets: ["AppModule"],
-            bundleIdentifier: "com.yurim.AnxietySmasher.AnxietySmasher",
+            bundleIdentifier: "com.yurim.PetTeddy",
             teamIdentifier: "L995XJC5CV",
             displayVersion: "1.0",
             bundleVersion: "1",

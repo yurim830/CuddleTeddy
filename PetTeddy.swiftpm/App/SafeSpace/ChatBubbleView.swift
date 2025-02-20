@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  AnxietySmasher
+//  ChatBubbleView.swift
+//  PetTeddy
 //
 //  Created by 김유림 on 2/18/25.
 //
