@@ -9,8 +9,8 @@ import SwiftUI
 
 extension Image {
     
-    static var faceSmile: Image {
-        return Image("face-smile")
+    static var teddyHead: Image {
+        return Image("teddy-head")
     }
     
     static var chatBubble: Image {

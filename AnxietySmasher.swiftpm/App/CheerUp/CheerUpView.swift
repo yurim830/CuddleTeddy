@@ -22,7 +22,10 @@ struct CheerUpView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
-                Image.faceSmile
+                Image.teddyHead
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 150)
                 
                 cheerUpMessageZStack
                     .padding(.horizontal, 40)
