@@ -11,7 +11,10 @@ struct StressSmasherView: View {
     
     @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
-    @State private var currentImageIndex = 0
+    @State private var heartBubbles: [HeartBubbleModel] = [] // Stores active heart-bubbles
+    
+    
+    @State private var currentTeddyImageIndex = 0
     @State private var isChanging = false // Prevents rapid changes
     
     var body: some View {
@@ -35,6 +38,13 @@ struct StressSmasherView: View {
         }
     }
     
+}
+
+
+// MARK: - UI Components
+
+private extension StressSmasherView {
+    
     var howAreYouLabel: some View {
         Text("Hi,\nhow are you?")
             .font(.system(.headline, design: .serif, weight: .medium))
@@ -44,7 +54,7 @@ struct StressSmasherView: View {
     
     var tapMeLabel: some View {
         Text("Pet me\nand let it all out!")
-            .font(.system(size: 26, weight: .regular, design: .monospaced))
+            .font(.system(size: 20, weight: .regular, design: .monospaced))
             .multilineTextAlignment(.center)
             .foregroundStyle(Color.yrPurpleDark)
     }
@@ -69,11 +79,15 @@ struct StressSmasherView: View {
     }
     
     var characterView: some View {
-        teddy.images[currentImageIndex]
+        ZStack {
+            teddy.images[currentTeddyImageIndex]
+            heartBubblesView
+        }
         .simultaneousGesture(
             TapGesture()
                 .onEnded {
-                    currentImageIndex = (currentImageIndex + 1) % teddy.images.count
+                    switchTeddyImage()
+                    addHeartBubble()
                 }
         )
         .simultaneousGesture(
@@ -82,14 +96,52 @@ struct StressSmasherView: View {
                     if !isChanging {
                         isChanging = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            currentImageIndex = (currentImageIndex + 1) % teddy.images.count
+                            switchTeddyImage()
+                            addHeartBubble()
                             isChanging = false
                         }
                     }
                 }
         )
     }
+    
+    var heartBubblesView: some View {
+        ZStack {
+            ForEach(heartBubbles) { bubble in
+                bubble.image
+            }
+        }
+    }
+    
 }
+
+
+// MARK: - Methods
+
+extension StressSmasherView {
+    
+    private func switchTeddyImage() {
+        currentTeddyImageIndex = (currentTeddyImageIndex + 1) % teddy.images.count
+    }
+    
+    private func addHeartBubble() {
+        // Add a heart bubble
+        let newBubble = HeartBubbleModel(
+            image: HeartBubbleModel.dummyImages.randomElement() ?? Image("heart-bubble-1")
+        )
+        
+        heartBubbles.append(newBubble)
+        
+        // Remove after 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            heartBubbles.removeAll { $0.id == newBubble.id }
+        }
+    }
+    
+}
+
+
+// MARK: - Preview
 
 #Preview {
     StressSmasherView()
