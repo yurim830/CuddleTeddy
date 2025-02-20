@@ -11,7 +11,7 @@ struct StressSmasherView: View {
     
     @State private var teddy: TeddyType = TeddyType.allCases.randomElement() ?? .teddy1
     
-    @State private var heartBubbles: [HeartBubbleModel] = [] // Stores active heart-bubbles
+    @State private var bubbles: [TeddyBubbleModel] = [] // Stores active heart-bubbles
     
     
     @State private var currentTeddyImageIndex = 0
@@ -107,7 +107,7 @@ private extension StressSmasherView {
     
     var heartBubblesView: some View {
         ZStack {
-            ForEach(heartBubbles) { bubble in
+            ForEach(bubbles) { bubble in
                 bubble.image
             }
         }
@@ -126,15 +126,15 @@ extension StressSmasherView {
     
     private func addHeartBubble() {
         // Add a heart bubble
-        let newBubble = HeartBubbleModel(
-            image: HeartBubbleModel.dummyImages.randomElement() ?? Image("heart-bubble-1")
+        let newBubble = TeddyBubbleModel(
+            image: TeddyBubbleModel.dummyImages.randomElement() ?? Image("heart-bubble-1")
         )
         
-        heartBubbles.append(newBubble)
+        bubbles.append(newBubble)
         
         // Remove after 2 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            heartBubbles.removeAll { $0.id == newBubble.id }
+            bubbles.removeAll { $0.id == newBubble.id }
         }
     }
     
