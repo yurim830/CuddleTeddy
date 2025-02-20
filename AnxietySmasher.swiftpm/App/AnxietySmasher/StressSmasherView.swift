@@ -81,6 +81,9 @@ private extension StressSmasherView {
     var characterView: some View {
         ZStack {
             teddy.images[currentTeddyImageIndex]
+                .resizable()
+                .scaledToFit()
+                .frame(width: 209, height: 295)
             heartBubblesView
         }
         .simultaneousGesture(
@@ -109,6 +112,9 @@ private extension StressSmasherView {
         ZStack {
             ForEach(bubbles) { bubble in
                 bubble.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity, maxHeight: 500)
             }
         }
     }
