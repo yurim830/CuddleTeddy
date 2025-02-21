@@ -1,8 +1,8 @@
 //
 //  SafeSpaceView.swift
-//  PetTeddy
+//  CuddleTeddy
 //
-//  Created by 김유림 on 2/18/25.
+//  Created by Yurim Kim on 2/18/25.
 
 
 import SwiftUI
@@ -39,7 +39,7 @@ struct SafeSpaceView: View {
                 .ignoresSafeArea()
             }
         }
-        .onAppear { // NOTE: Send greeting message
+        .onAppear {
             let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
             let message = MessageModel(
                 date: date,
@@ -49,7 +49,7 @@ struct SafeSpaceView: View {
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 messages.append(message)
-                scrollProxy?.scrollTo(message.id, anchor: .bottom) // 최신 메시지로 이동
+                scrollProxy?.scrollTo(message.id, anchor: .bottom)
             }
         }
     }
@@ -134,7 +134,7 @@ private extension SafeSpaceView {
         newMessage = ""
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            scrollProxy?.scrollTo(message.id, anchor: .bottom) // 최신 메시지로 이동
+            scrollProxy?.scrollTo(message.id, anchor: .bottom)
         }
     }
     

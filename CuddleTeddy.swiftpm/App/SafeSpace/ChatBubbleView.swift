@@ -1,8 +1,8 @@
 //
 //  ChatBubbleView.swift
-//  PetTeddy
+//  CuddleTeddy
 //
-//  Created by 김유림 on 2/18/25.
+//  Created by Yurim Kim on 2/18/25.
 //
 
 import SwiftUI
@@ -22,7 +22,7 @@ struct ChatBubbleView: View {
             )
             .foregroundColor(isSentByUser ? .white : .black)
             .frame(maxWidth: 250, alignment: isSentByUser ? .trailing : .leading)
-            .padding(isSentByUser ? .leading : .trailing, 40) // 말풍선 정렬 조정
+            .padding(isSentByUser ? .leading : .trailing, 40)
             .padding(.vertical, 5)
     }
     

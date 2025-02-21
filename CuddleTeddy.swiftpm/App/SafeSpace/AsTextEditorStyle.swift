@@ -1,8 +1,8 @@
 //
 //  AsTextEditorStyle.swift
-//  PetTeddy
+//  CuddleTeddy
 //
-//  Created by 김유림 on 2/18/25.
+//  Created by Yurim Kim on 2/18/25.
 //
 
 import SwiftUI
