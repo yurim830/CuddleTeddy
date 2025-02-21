@@ -9,7 +9,7 @@ import SwiftUI
 
 enum TeddyType: CaseIterable {
     
-    case teddy1, teddy2, teddy3, teddy4, teddy5, teddy6, teddy7, teddy8
+    case teddy1, teddy2, teddy3, teddy4, teddy5, teddy6, teddy7, teddy8, teddy9
     
     var images: [Image] {
         switch self {
@@ -29,6 +29,8 @@ enum TeddyType: CaseIterable {
             return [Image("Teddy7-a"), Image("Teddy7-b")]
         case .teddy8:
             return [Image("Teddy8-a"), Image("Teddy8-b")]
+        case .teddy9:
+            return [Image("Teddy9-a"), Image("Teddy9-b")]
         }
     }
 }
