@@ -30,9 +30,7 @@ struct SafeSpaceView: View {
             GeometryReader { geometry in
                 VStack {
                     Rectangle()
-                        .foregroundStyle(Color.yrCyanLight.opacity(0.3))
-                        .background(.ultraThinMaterial)
-                        .blur(radius: 1)
+                        .foregroundStyle(Color.yrCyanLight)
                         .frame(maxWidth: .infinity, maxHeight: geometry.safeAreaInsets.top)
                     Spacer()
                 }
