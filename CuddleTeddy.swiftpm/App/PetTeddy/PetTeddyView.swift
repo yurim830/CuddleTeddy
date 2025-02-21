@@ -24,18 +24,23 @@ struct PetTeddyView: View {
             Color.yrPurpleLight
                 .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 20) {
                 Spacer()
                 tapMeLabel
-                    .padding(30)
                 characterView
+                    .padding(.horizontal, 20)
+                Spacer()
+            }
+            .frame(maxHeight: .infinity, alignment: .center)
+            
+            VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     changeTeddyButton
-                        .padding(10)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 40)
                 }
-                .padding(20)
             }
         }
     }
@@ -75,7 +80,7 @@ private extension PetTeddyView {
             
             Text("change teddy")
                 .foregroundStyle(Color.yrPurpleDark)
-                .font(.system(size: 15))
+                .font(.system(size: 14))
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 5)
@@ -116,7 +121,7 @@ private extension PetTeddyView {
                     
                     if !isChangingBubble {
                         isChangingBubble = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                             addHeartBubble()
                             playHapticFeedback()
                             playSound()
@@ -132,12 +137,10 @@ private extension PetTeddyView {
             Image("empty-bubble")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: 500)
             ForEach(bubbles) { bubble in
                 bubble.image
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: .infinity, maxHeight: 500)
             }
         }
     }
