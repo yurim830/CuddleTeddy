@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct PetTeddyView: View {
     
@@ -91,6 +92,8 @@ private extension PetTeddyView {
                 .onEnded {
                     switchTeddyImage()
                     addHeartBubble()
+                    playHapticFeedback()
+                    playSound()
                 }
         )
         .simultaneousGesture(
@@ -108,6 +111,8 @@ private extension PetTeddyView {
                         isChangingBubble = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                             addHeartBubble()
+                            playHapticFeedback()
+                            playSound()
                             isChangingBubble = false
                         }
                     }
@@ -131,13 +136,13 @@ private extension PetTeddyView {
 
 // MARK: - Methods
 
-extension PetTeddyView {
+private extension PetTeddyView {
     
-    private func switchTeddyImage() {
+    func switchTeddyImage() {
         currentTeddyImageIndex = (currentTeddyImageIndex + 1) % teddy.images.count
     }
     
-    private func addHeartBubble() {
+    func addHeartBubble() {
         // Add a heart bubble
         let newBubble = TeddyBubbleModel(
             image: TeddyBubbleModel.dummyImages.randomElement() ?? Image("heart-bubble-1")
@@ -149,6 +154,15 @@ extension PetTeddyView {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             bubbles.removeAll { $0.id == newBubble.id }
         }
+    }
+    
+    func playSound() {
+        AudioServicesPlaySystemSound(1004)
+    }
+    
+    func playHapticFeedback() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
     }
     
 }
