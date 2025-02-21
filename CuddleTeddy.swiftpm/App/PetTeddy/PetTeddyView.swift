@@ -32,7 +32,8 @@ struct PetTeddyView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    changeFaceButton
+                    changeTeddyButton
+                        .padding(10)
                 }
                 .padding(20)
             }
@@ -60,13 +61,19 @@ private extension PetTeddyView {
             .foregroundStyle(Color.yrPurpleDark)
     }
     
-    var changeFaceButton: some View {
+    var changeTeddyButton: some View {
         Button {
             teddy = (TeddyType.allCases.randomElement() ?? .teddy1)
         } label: {
-            Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
-                .foregroundStyle(Color.yrPurpleDark)
-            Text("change face")
+            if #available(iOS 18.0, *) {
+                Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
+                    .foregroundStyle(Color.yrPurpleDark)
+            } else {
+                Image(systemName: "arrow.triangle.2.circlepath")
+                    .foregroundStyle(Color.yrPurpleDark)
+            }
+            
+            Text("change teddy")
                 .foregroundStyle(Color.yrPurpleDark)
                 .font(.system(size: 15))
         }
@@ -122,6 +129,10 @@ private extension PetTeddyView {
     
     var heartBubblesView: some View {
         ZStack {
+            Image("empty-bubble")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: 500)
             ForEach(bubbles) { bubble in
                 bubble.image
                     .resizable()

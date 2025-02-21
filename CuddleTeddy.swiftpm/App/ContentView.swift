@@ -13,7 +13,7 @@ struct ContentView: View {
                 .onAppear {
                     selectedTab = 0
                 }
-
+            
             CheerUpView()
                 .tabItem {
                     Label("Cheer Up", systemImage: "message")
