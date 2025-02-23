@@ -23,6 +23,9 @@ struct SafeSpaceView: View {
                 messageScrollView
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal, 10)
+                    .onTapGesture {
+                        isDescriptionFocused = false
+                    }
                 typingView
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
