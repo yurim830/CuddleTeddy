@@ -137,10 +137,12 @@ private extension PetTeddyView {
             Image("empty-bubble")
                 .resizable()
                 .scaledToFit()
+                .frame(maxWidth: min(440, UIScreen.main.bounds.width))
             ForEach(bubbles) { bubble in
                 bubble.image
                     .resizable()
                     .scaledToFit()
+                    .frame(maxWidth: min(440, UIScreen.main.bounds.width))
             }
         }
     }
