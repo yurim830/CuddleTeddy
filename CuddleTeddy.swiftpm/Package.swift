@@ -16,7 +16,7 @@ let package = Package(
         .iOSApplication(
             name: "CuddleTeddy",
             targets: ["AppModule"],
-            bundleIdentifier: "com.yurim.PetTeddy",
+            bundleIdentifier: "com.yurim.CuddleTeddy",
             teamIdentifier: "L995XJC5CV",
             displayVersion: "1.0",
             bundleVersion: "1",
